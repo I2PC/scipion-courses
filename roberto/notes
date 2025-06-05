@@ -10,3 +10,7 @@
 * Set terminal
     * [roberto@pc-csm-005~]>xinput map-to-output 20 HDMI-1-0
     * [roberto@pc-csm-005~]>xrandr 
+
+
+NOTES:
+   * alphafold 4 chains + 4 hem groups , extract single chain
