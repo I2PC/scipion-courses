@@ -14,5 +14,6 @@
 
 NOTES:
    * alphafold 4 chains + 4 hem groups , extract single chain
-   * ask about modelangelo, why extra is blue?
+   * ask about modelangelo, why extra is blue? -> chain alpha OK but no chain
+   * modelling. No hem stuff is needed any longer.
 
