@@ -7,7 +7,13 @@
 \usepackage{listings}
 \usepackage{subfigure} % For subfigures
 \usepackage{verbatim}
-
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\tikzstyle{startstop} = [rectangle, rounded corners, minimum width=3cm, minimum height=1cm,text centered, draw=black, fill=red!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
 
 %just to simplifly the body of the document
 \newcommand\img[1]{%
@@ -33,14 +39,14 @@
 \LARGE
 \frametitle{Objective}
 
-To construct accurate 3D atomic models of biomolecules (typically proteins) based on experimental or predicted data, enabling insights into their function, interactions, and mechanisms.
+To \textbf{construct 3D atomic models} of biomolecules (typically proteins) based on experimental or predicted data, enabling insights into their \textbf{function}.
 
 \end{frame}
 
 
 \begin{frame}
 \LARGE
-\frametitle{Map Preprocessing:  enhance map sharpness}
+\frametitle{1st step: Map Preprocessing.-  enhance map sharpness}
 
 One effective approach is local filtering (LocalDeblur), which adaptively enhance features based on local resolution.
 
@@ -48,17 +54,18 @@ One effective approach is local filtering (LocalDeblur), which adaptively enhanc
 
 \begin{frame}
 \LARGE
-\frametitle{Initial Model}
+\frametitle{2nd step: Initial Model}
 \begin{itemize}
  \item Alphafold
     \begin{itemize}
-    \item AI-based
     \item Highly accurate, especially for single-chain proteins (5000)
     \item No experimental structure is used
+    \item Main input sequences
+    \item Relies on coevolution
     \end{itemize}
  \item ModelAngelo
     \begin{itemize}
-    \item Integrates deep learning and structural constraints
+    \item Integrates structural constraints (3D maps)
     \item Works better at resolution less than 3.5 \AA
     \end{itemize}
  \item  Modeller (Sequence Homology Modeling)
@@ -69,6 +76,44 @@ One effective approach is local filtering (LocalDeblur), which adaptively enhanc
     \end{itemize}
 \end{itemize}
 \end{frame}
+
+
+\LARGE
+\title{Summary 2nd day}
+\subtitle{Model building}
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Workflow}
+\center
+\begin{tikzpicture}[node distance=1.75cm]
+    \node (initialmodel) [startstop] {Initial Model};
+    \node (rigidfit) [process, below of=initialmodel] {Rigid Fit};
+    \node (flexiblefit) [process, below of=rigidfit] {Flexible Fit};
+    \node (validation) [process, below of=flexiblefit] {Validation};
+    \node (mergesym) [startstop, below of=validation] {Merge/SYM};
+
+    %\node (dec1) [decision, right of=validation] {Decision 1};
+
+
+    \draw [arrow] (initialmodel) -- (rigidfit);
+    \draw [arrow] (rigidfit) -- (flexiblefit);
+    \draw [arrow] (flexiblefit) -- (validation);
+    \draw [arrow] (validation) -- (mergesym);
+
+    \draw [arrow] (validation.east) to node[anchor=north] {} ++(0:1) |- (flexiblefit.east);
+
+
+    \node(initialmodel_text)[right of=initialmodel, xshift=1cm] {\small 1st day};
+    \node(rigidfit_text)[right of=rigidfit, xshift=3.5cm] {\small dock in map (phenix), fitmap (chimera)};
+    \node(flexiblefit_text)[right of=flexiblefit, xshift=4.0cm, yshift=0.25cm] {\small coot, refmac (ccp4), real space refine (phenix)};
+    \node(validation_text)[right of=validation, xshift=3.4cm, yshift=-0.25cm] {\small emringer, validation cryoem (phenix)};
+    \node(mergesym_text)[right of=mergesym, xshift=1cm] {\small chimera};
+
+\end{tikzpicture}
+
+\end{frame}
+
 
 \begin{comment}
 
