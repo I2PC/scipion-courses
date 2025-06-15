@@ -1,0 +1,19 @@
+
+* Zoom
+    * super-button1 +
+    * super-button3 -
+
+* Grommit-mpx
+    * add cursor (https://github.com/bk138/gromit-mpx/pull/131/commits/a3181489856a64bbde5ff21c5ebc5b7d164bb193)
+    * F9 tongle application
+    * shift F9, clear annotations
+* Set terminal
+    * [roberto@pc-csm-005~]>xinput map-to-output 20 HDMI-1-0
+    * [roberto@pc-csm-005~]>xrandr 
+
+
+NOTES:
+   * alphafold 4 chains + 4 hem groups , extract single chain
+   * ask about modelangelo, why extra is blue? -> chain alpha OK but no chain
+   * modelling. No hem stuff is needed any longer.
+
