@@ -39,7 +39,7 @@
 \LARGE
 \frametitle{Objective}
 
-To \textbf{construct 3D atomic models} of biomolecules (typically proteins) based on experimental or predicted data, enabling insights into their \textbf{function}.
+To \textbf{construct 3D atomic models} of biomolecules (typically proteins) based on experimental or predicted data.
 
 \end{frame}
 
@@ -47,10 +47,14 @@ To \textbf{construct 3D atomic models} of biomolecules (typically proteins) base
 \begin{frame}
 \LARGE
 \frametitle{1st step: Map Preprocessing.-  enhance map sharpness}
-
-One effective approach is local filtering (LocalDeblur), which adaptively enhance features based on local resolution.
+    \begin{itemize}
+    \item resolution (local deblur)
+    \item connectivity
+    \item trade-off
+\end{itemize}
 
 \end{frame}
+
 
 \begin{frame}
 \LARGE
@@ -102,13 +106,14 @@ One effective approach is local filtering (LocalDeblur), which adaptively enhanc
     \draw [arrow] (validation) -- (mergesym);
 
     \draw [arrow] (validation.east) to node[anchor=north] {} ++(0:1) |- (flexiblefit.east);
+    \draw [arrow] (mergesym.east) to node[anchor=north] {} ++(0:1) |- (flexiblefit.east);
 
 
     \node(initialmodel_text)[right of=initialmodel, xshift=1cm] {\small 1st day};
     \node(rigidfit_text)[right of=rigidfit, xshift=3.5cm] {\small dock in map (phenix), fitmap (chimera)};
     \node(flexiblefit_text)[right of=flexiblefit, xshift=4.0cm, yshift=0.25cm] {\small coot, refmac (ccp4), real space refine (phenix)};
-    \node(validation_text)[right of=validation, xshift=3.4cm, yshift=-0.25cm] {\small emringer, validation cryoem (phenix)};
-    \node(mergesym_text)[right of=mergesym, xshift=1cm] {\small chimera};
+    \node(validation_text)[right of=validation, xshift=4cm, yshift=-0.25cm] {\small emringer, validation cryoem (phenix)};
+    \node(mergesym_text)[right of=mergesym, xshift=1.9cm] {\small chimera};
 
 \end{tikzpicture}
 
@@ -122,6 +127,7 @@ One effective approach is local filtering (LocalDeblur), which adaptively enhanc
 \begin{itemize}
  \item Hem group?
  \item Overlap/clash $\alpha$-subunit?
+ \item alphafold
 \end{itemize}
 \end{frame}
 \begin{comment}
